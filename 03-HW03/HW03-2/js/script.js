@@ -43,7 +43,10 @@ window.onload = function(){
 
 	//5 Тут мне понадобилась помощь поисковика
 	function getMaxLengthString(str){
-		
+		if (typeof str !== 'string') {//все, что не строка
+			return false;
+			console.log('Введите строковый тип данных');
+		}else {
 			while (str.substring(0, 1) == ' '){
 				str = str.substring(1, str.length);
 			}
@@ -55,9 +58,15 @@ window.onload = function(){
 				str = str.slice(0, 50) + '...';
 			}
 			return str;
+		}
+			
 		
 	}
 	console.log(getMaxLengthString('qwertyuiopasdfghjklzxcvbnmqwertyuiopasdfghjklzxcvbnm'));
+	console.log(getMaxLengthString(55));
 	
-}	
+
+}
+	
+	
 	
