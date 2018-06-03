@@ -4,7 +4,8 @@ let money,
 	name,
 	time,
 	price,
-	emp
+	emp,
+	dailyBudget
 
 	function start(){
 		//money = prompt('Ваш бюджет на месяц?');
@@ -12,7 +13,7 @@ let money,
 	    name  = prompt('Название вашего магазина?').toUpperCase();
 	    time = 21;
 	}
-	//start();
+	start();
 	function getDailyBudget(){
 		money = prompt('Ваш бюджет на месяц?');
 		while (isNaN(money) || money == '' || money == null || money < '1'){
@@ -21,10 +22,10 @@ let money,
 		let dailyBudget = money/30;
 		console.log(dailyBudget);
 	}
-	//getDailyBudget();
+	getDailyBudget();
 	let mainList = {
 		budget: money,
-		dailyBudget: money/30,
+		dailyBudget: money/30,//не нравится мне эта запись, пока по другому еще придумал.
 		storeName: name,
 		shopGoods: [],
 		employers: {},
@@ -38,7 +39,7 @@ let money,
 			emp = emp.charAt(0).toUpperCase() + emp.slice(1).toLowerCase();//делаем имя работника с заглавной буквы, а остальные прописными
 				if ((typeof(emp)) === 'string' && (typeof(emp)) !== null && emp !== '' && emp.length < 50) {
 					console.log('Работник добавлен');
-					mainList.employers[i] =  + i+1 + ' - '  + emp;
+					mainList.employers[i] =  i+1 + ' - '  + emp;
 				}else{
 					console.log('else block error');
 					i--;
@@ -59,7 +60,7 @@ let money,
 				}	
 		}
 	}
-	//chooseGoods();
+	chooseGoods();
 	function workTime(time) {
 		if (time < 0){
 			console.log('Такого не может быть');
@@ -71,11 +72,11 @@ let money,
 				console.log('В сутках только 24 часа!');
 	}
 	function isDiscount() {
-		if(mainList){
+		if(mainList.discount == false){
 			price = price;
 			console.log('У вас нет скидки');
 		} else {
-			price = price*0.8;
+			price = price * 0.8;
 			console.log('Ваша скидка 20%');
 		}
 
