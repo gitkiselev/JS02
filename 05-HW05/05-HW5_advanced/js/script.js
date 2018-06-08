@@ -12,7 +12,7 @@ function showDate(){
 	let hours   = currentDate.getHours();
 	let minutes = currentDate.getMinutes();
 	let seconds = currentDate.getSeconds();
-	let day     = currentDate.getDay();
+	let day     = currentDate.getDay() + 1;
 	let month   = currentDate.getMonth() + 1;
 	let year    = currentDate.getFullYear();
 	let out     = document.getElementById('out');
@@ -67,39 +67,72 @@ let day1 = document.getElementById('day1_field');
 let day2 = document.getElementById('day2_field');
 let result = document.getElementById('result');
 let getResult = document.getElementById('get-result');
-let arrDates = [];// положил даты в массив, по другому не получалось
 
 
-
+let arr1 = new Array();
+let arr2 = new Array();
+let d1m;
+let d2m;
+let d1;
+let d2;
 //getResult.disabled = true;
-day1.onchange = function(){
-	
-	let d1 = day1.value;
+// положил даты в массив, по другому не получалось
+getResult.disabled = true;
+day1.value = new Date();
+day2.value = new Date();
+day1.onreset = function(){
+	day1.value = new Date();
+}
+day1.oninput = function(){
+	if(this.value != d1){
+		arr1.pop();
+		
+		let d1 = day1.value;//YYYY=MM-DD
+		if(arr2 != ''){
+			getResult.disabled = false;
+		}
+		
 	let d1m = new Date(d1);
-	arrDates.push(d1m);
 	
+	arr1.push(d1m);
+	console.log('new Date(d1).getTime()-> ' + d1m);//1529020800000
+	console.log(new Date(d1));//Fri Jun 15 2018 03:00:00 GMT+0300 (RTZ 2 (зима))
 	console.log('changed 1');
-	return d1m;
+	}
+	
 }
 
-day2.onchange = function(){
-	
-	let d2 = day2.value;
+day2.oninput = function(){
+	if(this.value != d2){
+		arr2.pop();//ощищаем массив перед записью нового значения
+		
+		let d2 = day2.value;
+		if(arr1 != ''){
+			getResult.disabled = false;
+		}
+
 	let d2m = new Date(d2);
-	arrDates.push(d2m);
-	
+	arr2.push(d2m);
+	console.log(d2);//YYYY-MM-DD
+	console.log(d2m);//1529020800000
 	console.log('changed 2');
-	return d2m;
+	}
+	
 	
 }
 
 
+document.body.style.backgroundColor = '';
 getResult.addEventListener('click', function(){
-	result.value = '';
-	console.log('Проверка');
-		let timeDiff = Math.abs(arrDates[1].getTime() - arrDates[0].getTime());
+
+	
+		
+		console.log('Клик по кнопке');
+		let timeDiff = Math.abs(arr2[0].getTime() - arr1[0].getTime());
 		let diffDays = Math.ceil(timeDiff/(1000*3600*24));
 		result.value = diffDays;
+	
+	
 
 
 });

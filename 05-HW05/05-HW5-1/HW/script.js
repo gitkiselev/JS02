@@ -1,4 +1,5 @@
-//1
+window.onload = function(){
+	//1
 console.log('Проверка');
 let menu = document.querySelector('.menu');
 let fifth = document.createElement('li');
@@ -16,4 +17,6 @@ adv.parentNode.removeChild(adv);
 let likeApple = prompt('Ваше отношение к технике Apple?', '');
 let answer = document.querySelector('.prompt');
 answer.textContent = likeApple;
+}
+
 
