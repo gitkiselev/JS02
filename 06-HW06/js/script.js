@@ -66,21 +66,24 @@
 		discount: false,
 		shopItems: []
 	};
-		function readonlyFields (){
-			for(let i = 0; i < inputs.length; i++){
-				let input = inputs[i];
-				input.readOnly = true;
-			}
+	function readonlyFields (){
+		for(let i = 0; i < inputs.length; i++){
+			let input = inputs[i];
+			input.readOnly = true;
+			//timeValue.readOnly = false;
 		}
-		function notReadonlyFields(){
-			for(let i = 0; i < inputs.length; i++){
-				let input = inputs[i];
-				input.readOnly = false;
-			}
+	}
+	function notReadonlyFields(){
+		for(let i = 0; i < inputs.length; i++){
+			let input = inputs[i];
+			input.readOnly = false;
 		}
-		if(mainList.open == false){
-			readonlyFields();
-		}
+
+	}
+	if(mainList.open == false){
+		readonlyFields();
+	}
+
 	openStore.addEventListener('click', () => {
 		
 		money = prompt('Ваш бюджет на месяц?');
@@ -108,16 +111,24 @@
 		
 	goodsItemBtn.addEventListener('click', () => {
 		for (let i = 0; i < goodsItem.length; i++){
-				let a = goodsItem[i].value;
-				mainList.shopGoods[i] = a;
+				let a = goodsItem[i].value.trim();
+				if(a != ''){
 					if ((typeof(a)) === 'string' && (typeof(a)) !== null && a.length < 50) {
 						console.log('Все верно');
 						mainList.shopGoods[i] = a;
-						goodsValue.textContent = mainList.shopGoods;
+						goodsValue.textContent += mainList.shopGoods[i] + ', ';
 					}else{
 						console.log('else block error');
 						i--;
-					}	
+					}
+				}
+					
+				
+					
+			
+					
+				
+					
 		}
 	});
 	chooseItem.addEventListener('change', () => {
@@ -144,10 +155,10 @@
 				console.log ('Время работать!');
 				mainList.open = true;
 		} else if (time < 24){
-				console.log('Уже слишком поздно');
+				console.log('Сейчас нерабочее время');
 				mainList.open = false;
 				
-		}	else {
+		} else {
 				console.log('В сутках только 24 часа!');
 		}
 		if(mainList.open == true){
@@ -156,6 +167,7 @@
 		} else{
 			isopenValue.style.backgroundColor = 'red';
 			readonlyFields();
+			timeValue.readOnly = false;
 		}
 	});	
 
@@ -170,10 +182,13 @@
 		for (let i = 0; i < hireEmployersItem.length; i++){
 				let name = hireEmployersItem[i].value;
 				name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();//делаем имя работника с заглавной буквы, а остальные прописными
-				mainList.employers[i] = name;
-				employersValue.textContent += mainList.employers[i] + ', ';	
-				name = hireEmployersItem[i].value = '';//очищаем поля после клика
-				hireEmployersBtn.disabled = true;//снова делаем кнопку ненажимаемой
+				if(name != ''){
+					mainList.employers[i] = name;
+					employersValue.textContent += mainList.employers[i] + ', ';	
+					name = hireEmployersItem[i].value = '';//очищаем поля после клика
+					hireEmployersBtn.disabled = true;//снова делаем кнопку ненажимаемой
+				}
+				
 			}
 	});
 		
