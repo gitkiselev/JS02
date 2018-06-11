@@ -164,13 +164,7 @@
 		countBudgetValue.value = money / 30;
 	});
 
-	employers_1.addEventListener('input', (e) => {
-		console.log('input event string 115');
-		let re =/а-яА-Яё/;
-		if(!(re.test(e.target.value))){
-			return false;
-		} 
-	});
+	
 	//1 Усложненное задание
 	hireEmployersBtn.addEventListener('click', () => {
 		for (let i = 0; i < hireEmployersItem.length; i++){
@@ -202,95 +196,53 @@
 	openStore.addEventListener('click', () => {
 		countBudgetBtn.disabled = false;
 	});
-	let gi1 = document.getElementById('goods_1');
-	let gi2 = document.getElementById('goods_2');
-	let gi3 = document.getElementById('goods_3');
-	let gi4 = document.getElementById('goods_4');
-
-	gi1.addEventListener('input', () => {
-		if(gi1.value != '' || gi2.value != '' || gi3.value != '' || gi4.value != ''){
-			goodsItemBtn.disabled = false;
-		}else {
-			goodsItemBtn.disabled = true;
-		}
-	});
-	gi2.addEventListener('input', () => {
-		if(gi1.value != '' || gi2.value != '' || gi3.value != '' || gi4.value != ''){
-			goodsItemBtn.disabled = false;
-		}else {
-			goodsItemBtn.disabled = true;
-		}
-	});
-	gi3.addEventListener('input', () => {
-		if(gi1.value != '' || gi2.value != '' || gi3.value != '' || gi4.value != ''){
-			goodsItemBtn.disabled = false;
-		}else {
-			goodsItemBtn.disabled = true;
-		}
-	});
-	gi4.addEventListener('input', () => {
-		if(gi1.value != '' || gi2.value != '' || gi3.value != '' || gi4.value != ''){
-			goodsItemBtn.disabled = false;
-		}else {
-			goodsItemBtn.disabled = true;
-		}
-	});
-	let he1 = document.getElementById('employers_1');
-	let he2 = document.getElementById('employers_2');
-	let he3 = document.getElementById('employers_3');
-	he1.addEventListener('input', () => {
-		checkLang1();
-		if(he1.value != '' || he2.value != '' || he3.value != ''){
-			hireEmployersBtn.disabled = false;
-		}else {
-			hireEmployersBtn.disabled = true;
-		}
-	});
-	he2.addEventListener('input', () => {
-		checkLang2();
-		if(he1.value != '' || he2.value != '' || he3.value != ''){
-			hireEmployersBtn.disabled = false;
-		}else {
-			hireEmployersBtn.disabled = true;
-		}
-	});
-	he3.addEventListener('input', () => {
-		checkLang3();
-		if(he1.value != '' || he2.value != '' || he3.value != ''){
-			hireEmployersBtn.disabled = false;
-		}else {
-			hireEmployersBtn.disabled = true;
-		}
-	});
 	
+	function checkFields(){
+		let gi1 = document.getElementById('goods_1');
+		let gi2 = document.getElementById('goods_2');
+		let gi3 = document.getElementById('goods_3');
+		let gi4 = document.getElementById('goods_4');
+		if(gi1.value != '' || gi2.value != '' || gi3.value != '' || gi4.value != ''){
+			goodsItemBtn.disabled = false;
+		}else {
+			goodsItemBtn.disabled = true;
+		}
+	
+	
+	}
+	function checkFieldsEmp(){
+		let he1 = document.getElementById('employers_1');
+		let he2 = document.getElementById('employers_2');
+		let he3 = document.getElementById('employers_3');
+		console.log('checkFieldsEmp');
+			if(he1.value != '' || he2.value != '' || he3.value != ''){
+				hireEmployersBtn.disabled = false;
+			}else {
+				hireEmployersBtn.disabled = true;
+			}
+	}
+	
+
+
 	//2 Усложненное задание
-	function checkLang1(){
-		console.log('Функция');
-		let value = he1.value;
-		let re = /[^А-ЯЁ]/i;
-		if(re.test(he1.value)){	
-			value = he1.value.replace(re, '');
-			he1.value = value;
-		}
+	for(let i = 0; i < hireEmployersItem.length; i++){
+		let input = hireEmployersItem[i];
+		let value = input.value;
+		input.addEventListener('input', (e) => {
+			
+			let newValue = e.target.value;
+
+				if( newValue.match(/[^А-ЯЁ]/i)) {
+				     input.value = value;
+				     return;
+				}
+			  	value = newValue;
+			
+		});
 	}
-	function checkLang2(){
-		console.log('Функция');
-		let value = he2.value;
-		let re = /[^А-ЯЁ]/i;
-		if(re.test(he2.value)){	
-			value = he2.value.replace(re, '');
-			he2.value = value;
-		}
-	}
-	function checkLang3(){
-		console.log('Функция');
-		let value = he3.value;
-		let re = /[^А-ЯЁ]/i;
-		if(re.test(he3.value)){	
-			value = he3.value.replace(re, '');
-			he3.value = value;
-		}
-	}
+	
+	
+	
 	
 	
 	
