@@ -746,11 +746,27 @@ header ul li:before {
   animation-duration: 0.7s;
   
 }
-@key-frames splash{
+@keyframes splash{
   from {
     box-shadow: 0 0 10px #C78030;
   }
   to {
     box-shadow: 0 0 60px #C78030;
   }
+}
+.scale-appear {
+  animation-name: scale-window;
+  animation-duration: 0.7s;
+}
+@keyframes scale-window {
+  from {
+   left: 0;
+   top: 0;
+   transform: translateX(0);
+    
+  }
+  to {
+    left: 50%;
+    top: 150px;
+    transform: translateX(-50%);
 }

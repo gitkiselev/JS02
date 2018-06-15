@@ -58,13 +58,15 @@ window.onload = function() {
   // Blink engine detection
   var isBlink = (isChrome || isOpera) && !!window.CSS;
   if (isMobile.any()) {
+    let overlay = document.querySelector(".overlay");
+    overlay.classList.remove("fade"); //удалим класс, отвечающий за анимацию
     console.log("Используется мобильный браузер");
     let info = document.querySelector(".info");
     let desc = document.querySelectorAll(".description-btn");
-    let overlay = document.querySelector(".overlay");
+    
     let close = document.querySelector(".popup-close");
     let btn = document.getElementById("btn");
-    overlay.classList.remove("fade"); //удалим класс, отвечающий за анимацию
+    
 
     btn.addEventListener("click", function() {
       overlay.style.display = "block";
@@ -82,18 +84,21 @@ window.onload = function() {
     let overlay = document.querySelector(".overlay");
     let close = document.querySelector(".popup-close");
     let btn = document.getElementById("btn");
+    let popup = document.querySelector('.popup');
 
     if (isIE || isEdge) {
       console.log("Эмуляция браузера Internet Explorer или Edge");
       btn.addEventListener("click", function() {
-        this.classList.add("more-splash");
+        this.classList.add("more-splash");//css3
         overlay.style.display = "block";
+        popup.classList.add('scale-appear');//keyframes css3
         document.body.style.overflow = "hidden";
       });
       close.addEventListener("click", function() {
         overlay.style.display = "none";
         this.classList.remove("more-splash");
         document.body.style.overflow = "";
+        popup.classList.remove('scale-appear');//keyframes css3
       });
     } else {
       console.log(
@@ -126,7 +131,7 @@ window.onload = function() {
         overlay.style.display = "block";
         overlay.style.boxShadow = "0 0 60px #C78030";
         document.body.style.overflow = "hidden";
-        document.body.style.backgroundColor = 'red';//просто проверка что не IE11
+        //document.body.style.backgroundColor = 'red';//просто проверка что не IE11
       }, 1700);
     });
     close.addEventListener("click", function() {
@@ -135,7 +140,7 @@ window.onload = function() {
         overlay.style.display = "none";
         overlay.style.boxShadow = "";
         document.body.style.overflow = "scroll";
-        document.body.style.backgroundColor = '';
+        //document.body.style.backgroundColor = '';
       }, 1700);
     });
   }
