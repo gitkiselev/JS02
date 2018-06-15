@@ -62,7 +62,7 @@ window.onload = function() {
   setClock("timer", deadline);
 
   //усложненное задание
-  var linkNav = document.querySelectorAll('[href^="#"]'),
+  let linkNav = document.querySelectorAll('[href^="#"]'),
     V = 0.5; // скорость, может иметь дробное значение через точку
   for (let i = 0; i < linkNav.length; i++) {
     linkNav[i].onclick = () => {
