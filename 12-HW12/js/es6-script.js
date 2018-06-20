@@ -278,7 +278,7 @@
   totalValue.innerHTML = 0;
 
   persons.addEventListener('change', function(e){
-     persons.value = persons.value.replace(/[^\d]/g, '');
+     persons.value = persons.value.replace(/^0|[^\d]/g, '');
        daysSum = +persons.value;
     total = (daysSum + personsSum)*4000;
 
@@ -293,7 +293,7 @@
 
   restDays.addEventListener('change', function(e){
      
-      restDays.value = restDays.value.replace(/[^\d]/g, '');
+      restDays.value = restDays.value.replace(/^0|[^\d]/g, '');
      
       daysSum = +restDays.value;
     total = (daysSum + personsSum)*4000;
