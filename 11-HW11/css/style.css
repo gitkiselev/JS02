@@ -754,3 +754,7 @@ header ul li:before {
     box-shadow: 0 0 60px #C78030;
   }
 }
+.contact-form .status {
+  color: #FFF;
+  margin-top: 10px;
+}
