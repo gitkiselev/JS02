@@ -36,7 +36,7 @@ $(document).ready(function(){
 			data: postData,
 			success: function(data, status, xhr){
 				if (status == 'success'){
-					$('.modal').animate({
+					$('.modal, .overlay').animate({
 						opacity: 0,
 						height: 'hide'
 					}, 700);
