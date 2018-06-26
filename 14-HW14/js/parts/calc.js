@@ -8,8 +8,8 @@ function calc(){
   let total = 0;
   totalValue.innerHTML = 0;
 
-  persons.addEventListener('change', function(e){
-     persons.value = persons.value.replace(/^0|[^\d]/g, '');
+  persons.addEventListener('input', function(e){
+     persons.value = persons.value.replace(/^[0][0-9]{0,2}/, '');
        daysSum = +persons.value;
     total = (daysSum + personsSum)*4000;
 
@@ -22,9 +22,9 @@ function calc(){
      
   });
 
-  restDays.addEventListener('change', function(e){
+  restDays.addEventListener('input', function(e){
      
-      restDays.value = restDays.value.replace(/^0|[^\d]/g, '');
+      restDays.value = restDays.value.replace(/^[0][0-9]{0,2}/, '');
      
       daysSum = +restDays.value;
     total = (daysSum + personsSum)*4000;
